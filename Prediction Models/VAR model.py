@@ -18,7 +18,7 @@
 # COMMAND ----------
 
 from IPython.display import Image, display
-image_path = '/Workspace/Users/anouar.saidan@sonepar.com/anouar.saidan@sonepar.com/Screenshots/AR(p).png'
+image_path = '/.../AR(p).png'
 display(Image(filename=image_path, width = 600))
 
 # COMMAND ----------
@@ -40,7 +40,7 @@ display(Image(filename=image_path, width = 600))
 # COMMAND ----------
 
 from IPython.display import Image, display
-image_path = '/Workspace/Users/anouar.saidan@sonepar.com/anouar.saidan@sonepar.com/Screenshots/VAR(p).png'
+image_path = '/Workspace/.../VAR(p).png'
 display(Image(filename=image_path, width = 500))
 
 # COMMAND ----------
