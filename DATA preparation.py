@@ -7,69 +7,13 @@
 import configparser
 
 config = configparser.ConfigParser()
-files_read = config.read('/Workspace/Users/anouar.saidan@sonepar.com/anouar.saidan@sonepar.com/config.ini')
+files_read = config.read('/Workspace/.../config.ini')
 country = config['parameters']['country']
 min_rotation = int(config['parameters']['min_rotation'])
 print(f"Country: {country}")
 
 # COMMAND ----------
 
-# MAGIC %md
-# MAGIC ###Data loading
-
-# COMMAND ----------
-
-spark.sql(f"""
-CREATE OR REPLACE TABLE DATA_{country} AS
-SELECT
-   S.product_id,
-   weekofyear(S.invoice_dt) AS sales_week,
-   YEAR(S.invoice_dt) AS sales_year,
-   SUM(S.qty) AS total_qty,
-   P.is_stock,
-   P.sis_family,
-   P.sis_family_id,
-   P.category_id,
-   P.brand_legacy_id,
-   P.etim_class,
-   P.etim_class_id,
-   P.sis_sub_family,
-   P.sis_sub_family_id,
-   P.sis_group_id,
-   P.master_product_id,
-   P.assortment_type,
-   S.vendor_id,
-   avg(S.sales_price) AS avg_sales_price,
-   SUM(S.discount_value) AS total_discount_value,
-   COUNT (DISTINCT(S.invoice_dt)) AS sales_date_weekly_number,
-   P.opco_id
-FROM unified.sales_invoice S
-INNER JOIN unified.product P
-   ON P.product_id = S.product_id
-WHERE
-   S.country_code='{country}' 
-   AND P.sis_family_id= 7.2
-   AND S.qty >= 0
-   AND S.invoice_dt >= '2019-07-29'
-GROUP BY
-   S.product_id,
-   weekofyear(S.invoice_dt),
-   YEAR(S.invoice_dt),
-   P.is_stock,
-   P.sis_family,
-   P.sis_family_id,
-   P.category_id,
-   P.brand_legacy_id,
-   P.etim_class,
-   P.etim_class_id,
-   P.sis_sub_family,
-   P.sis_sub_family_id,
-   P.master_product_id,
-   P.assortment_type,
-   S.vendor_id, 
-   P.opco_id,
-   P.sis_group_id
-""")
 
 # COMMAND ----------
 
@@ -97,8 +41,7 @@ df = df.toPandas()
 # COMMAND ----------
 
 #Cols is the list of columns used in Data_AUT
-cols = ['product_id','total_qty', 'avg_sales_price','total_discount_value', 
-       'sales_date_weekly_number', 'sales_week', 'sales_year','is_stock', 'etim_class', 'etim_class_id', 'sis_sub_family', 'sis_sub_family_id', 'sis_group_id', 'vendor_id']
+cols = ['product_id','total_qty', ...]
 df = df[cols]
 
 #Check if there are some null values in the different columns
