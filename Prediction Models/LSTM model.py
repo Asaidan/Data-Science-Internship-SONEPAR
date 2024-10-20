@@ -27,7 +27,7 @@ dbutils.library.restartPython()
 import configparser
 
 config = configparser.ConfigParser()
-files_read = config.read('/Workspace/Users/anouar.saidan@sonepar.com/anouar.saidan@sonepar.com/config.ini')
+files_read = config.read('/Workspace/.../config.ini')
 country = config['parameters']['country']
 min_rotation = int(config['parameters']['min_rotation'])
 print(f"Country: {country}")
