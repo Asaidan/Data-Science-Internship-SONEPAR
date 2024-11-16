@@ -1,4 +1,4 @@
-# Data Science Internship Sonepar
+# Demand Forecast in Supply Chain
 This project consists of predicting demand quantity in supply chain, for the next few months based on the demand history in the past 3 years. 
 To do this, I have used different prediction models and have compared their accuray.
 
